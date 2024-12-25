@@ -1,7 +1,8 @@
 from sqlalchemy import Column, Integer, String, Boolean, DateTime
 from db.database import Base
 from datetime import datetime
-# from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship
+# from models.Cart import Cart
 
 class User(Base):
     __tablename__ = "users"
@@ -13,7 +14,9 @@ class User(Base):
     address = Column(String, nullable=False)
     contact = Column(String, nullable=False)
     is_admin = Column(Boolean, default=False)
-    # cart = relationship("Cart", back_populates="user")
+    cart = relationship("Cart", back_populates="user")
 
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+    # carts = relationship("Cart", back_populates="user", cascade="all, delete")

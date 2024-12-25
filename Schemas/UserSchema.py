@@ -1,7 +1,7 @@
 from pydantic import BaseModel, EmailStr
-# from typing import List, Optional
+from typing import List, Optional
 from datetime import datetime
-# from .CartSchema import CartOut
+from .CartSchema import CartOut
 
 class UserBase(BaseModel):
     name: str
@@ -15,7 +15,7 @@ class UserCreate(UserBase):
 
 class UserOut(UserBase):
     id: int
-    # cart: Optional[List['CartOut']] = []  # Optional relationship to cart
+    cart: Optional[List['CartOut']] = []  # Optional relationship to cart
 
     created_at: datetime
     updated_at: datetime
