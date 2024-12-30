@@ -36,9 +36,9 @@ async def profileUpdate(userId: int, userData: UserUpdate, token: dict = Depends
                 print(f"Hashed Password: {value}")
             setattr(user, key, value)
 
-        print(f" User: {user.password_hash}")
+        print(f" User: {user.password}")
 
-        db.add(user)
+        # db.add(user)
         db.commit()
         db.refresh(user)
         

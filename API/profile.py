@@ -60,7 +60,7 @@ async def login( response: Response, userCredentails: UserCred, db: Session = De
     user = db.query(User).filter(User.email == userCredentails.email).first()
 
     if user:
-        if verify_password(userCredentails.password, user.password_hash):
+        if verify_password(userCredentails.password, user.password):
             token_data = {"id": user.id, "email": user.email, "is_admin": user.is_admin}
             # access_token = create_access_token(data={"sub": userCredentails.email})
             access_token = create_access_token(data=token_data)
@@ -97,7 +97,7 @@ async def signup(response: Response, userData: UserCreate, db: Session = Depends
             newUser = User(
                 name=userData.name,
                 email=userData.email,
-                password_hash=hashed_password,
+                password=hashed_password,
                 address=userData.address,
                 contact=userData.contact,
                 is_admin=userData.is_admin,
@@ -154,7 +154,6 @@ def get_all_users(db: Session = Depends(get_db)):
 
 
 
-# "$2b$12$lmrx4d4qJ1ovjjVrRp5HneWCSEuF9JdOO0hCPyA//SdNG0hXcGAbe"
-# "$2b$12$lmrx4d4qJ1ovjjVrRp5HneWCSEuF9JdOO0hCPyA//SdNG0hXcGAbe"
-# "$2b$12$lmrx4d4qJ1ovjjVrRp5HneWCSEuF9JdOO0hCPyA//SdNG0hXcGAbe"
-# "$2b$12$lmrx4d4qJ1ovjjVrRp5HneWCSEuF9JdOO0hCPyA//SdNG0hXcGAbe"
+# "$2b$12$/i.gZ22e690W4O3gr.YFG.YRxeYSPojN5L8WgcsbZ1D3ZxeO/d79i"
+# "$2b$12$sVaVYScKNN/qEpSwrR31I.gQKUXu6GITPX/kq00FGuUbhUwqHYX3O"
+
